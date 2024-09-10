@@ -1,0 +1,21 @@
+{
+  "name": "grupo-node",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "vitest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "prisma": "^5.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.0.5"
+  }
+}
