@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx src/index.ts",
-    "test": "DATABASE_URL=postgresql://johndoe:randompassword@localhost:5432/testdb?schema=public && npx prisma migrate dev && vitest"
+    "test": "npm run load-test-env && npm run run-tests",
+    "load-test-env": "dotenv -e .env.test -- npx prisma migrate dev",
+    "run-tests": "dotenv -e .env.test -- vitest"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
+    "dotenv-cli": "^7.4.2",
     "prisma": "^5.19.1",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2",
