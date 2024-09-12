@@ -2,19 +2,22 @@
   "name": "grupo-node",
   "version": "0.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "vitest"
+    "start": "tsx src/index.ts",
+    "test": "DATABASE_URL=postgresql://johndoe:randompassword@localhost:5432/testdb?schema=public && npx prisma migrate dev && vitest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.19.1",
     "fastify": "^4.28.1"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
     "prisma": "^5.19.1",
+    "tsx": "^4.19.1",
     "typescript": "^5.6.2",
     "vitest": "^2.0.5"
   }

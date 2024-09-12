@@ -1,4 +1,4 @@
-# Grupo de Estudos NodeJS
+# NodeJS Study Group Material
 
 ## How to run
 
