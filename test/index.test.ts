@@ -1,9 +1,12 @@
-import { sayHello } from '../src/index'
+import { main } from '../src/create-user';
+import { prisma } from '../src/connection';
 
 describe("Hello World", () => {
-  it("shows Hello World", () => {
-    const message = sayHello();
+  afterAll(async () => {
+    await prisma.user.deleteMany()
+  });
 
-    expect(message).toBe("Hello World");
+  it("shows Hello World", async () => {
+    await main()
   });
 });
