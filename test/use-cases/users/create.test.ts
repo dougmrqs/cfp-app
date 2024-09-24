@@ -2,7 +2,8 @@ import { prisma } from '../../../src/connection';
 import { createUser } from '../../../src/use-cases/users/create';
 
 describe('#createUser', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
+    await prisma.proposal.deleteMany({})
     await prisma.user.deleteMany()
   })
 

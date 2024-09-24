@@ -1,5 +1,9 @@
 import { prisma } from './connection'
-import { main } from './create-user'
+import { start } from './interface/http/server'
+
+function main() { 
+  return start()
+}
 
 main()
   .then(() => prisma.$disconnect())

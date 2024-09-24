@@ -2,7 +2,7 @@ import { prisma } from '../../../src/connection';
 import { createProposal } from '../../../src/use-cases/proposals/create';
 
 describe('#createProposal', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await prisma.proposal.deleteMany({})
     await prisma.user.deleteMany({})
   })
@@ -19,9 +19,10 @@ describe('#createProposal', () => {
     const proposal = {
       title: 'A new proposal',
       body: 'This is a new proposal',
+      authorId: user.id
     }
 
-    const result = await createProposal(proposal, user)
+    const result = await createProposal(proposal)
     expect(result).toMatchObject(proposal)
   })
 })
