@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { createUser } from '../../../use-cases/users/create'
 
-export async function create(request: FastifyRequest, res: FastifyReply) {
+export async function create(request: FastifyRequest, reply: FastifyReply) {
   const { body } = request
 
   const user = await createUser({
@@ -10,5 +10,5 @@ export async function create(request: FastifyRequest, res: FastifyReply) {
     birthDate: body.birthDate
   })
 
-  res.status(201).send(user)
+  reply.status(201).send(user)
 }
