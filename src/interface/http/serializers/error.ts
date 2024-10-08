@@ -1,8 +1,8 @@
-export function serializeError(error: Error) {
+export function serializeError(error: Error & {code: string}) {
   return {
     error: {
-      code: 'BadRequest',
-     message: serializeMessage(error.message)
+      code: error.code ?? 'BadRequest',
+      message: serializeMessage(error.message)
     }
   }
 }

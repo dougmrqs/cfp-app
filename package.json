@@ -6,9 +6,12 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx src/index.ts",
-    "pretest": "dotenv -e .env.test -- npx prisma migrate dev",
+    "pretest": "dotenv -e .env.test -- npx prisma migrate dev && npx prisma db seed",
     "test": "npm run run-tests",
     "run-tests": "dotenv -e .env.test -- vitest"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seeds/events.ts"
   },
   "author": "",
   "license": "ISC",

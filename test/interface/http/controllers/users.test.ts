@@ -3,7 +3,6 @@ import { prisma } from '../../../../src/connection';
 
 describe('UsersController', () => {
   beforeEach(async () => {
-    await prisma.proposal.deleteMany({})
     await prisma.user.deleteMany({})  
   });
 
@@ -49,10 +48,10 @@ describe('UsersController', () => {
           }
         });
 
-        expect(response.statusCode).toBe(400);
+        expect(response.statusCode).toBe(409);
         expect(response.json()).toMatchObject({
           error: {
-            code: 'BadRequest',
+            code: 'CONFLICT',
             message: 'Email already taken'
           }
         });

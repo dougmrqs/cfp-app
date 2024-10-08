@@ -3,8 +3,7 @@ import { fastify } from '../../../../src/interface/http/server';
 
 describe('ProposalsController', () => {
   beforeEach(async () => {
-    await prisma.proposal.deleteMany({})
-    await prisma.user.deleteMany({})  
+    await prisma.user.deleteMany({})
   })
 
   describe('POST /proposals', () => {

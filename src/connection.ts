@@ -7,4 +7,6 @@ function makeClient() {
   });
 }
 
+// TODO: ver se a conexão já foi aberta
+
 export const prisma = makeClient();
