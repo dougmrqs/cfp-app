@@ -6,16 +6,18 @@ describe('UsersController', () => {
     await prisma.user.deleteMany({})  
   });
 
+  const makeValidUser = () => ({
+    username: 'foo',
+    email: 'foo@provider.com',
+    birthDate: new Date('1990-01-01').toISOString()
+  });
+
   describe('POST /users', () => {
     it('creates a user', async () => {
       const response = await fastify.inject({
         method: 'POST',
         url: '/users',
-        payload: {
-          username: 'foo',
-          email: 'foo@provider.com',
-          birthDate: new Date('1990-01-01').toISOString()
-        }
+        payload: makeValidUser()
       });
 
       expect(response.statusCode).toBe(201);
@@ -29,11 +31,7 @@ describe('UsersController', () => {
     describe('when email is already taken', () => {
       beforeEach(async () => {
         await prisma.user.create({
-          data: {
-            username: 'foo',
-            email: 'foo@provider.com',
-            birthDate: new Date().toISOString()
-          }
+          data: makeValidUser()
         });
       });
 
@@ -41,11 +39,7 @@ describe('UsersController', () => {
         const response = await fastify.inject({
           method: 'POST',
           url: '/users',
-          payload: {
-            username: 'bar',
-            email: 'foo@provider.com',
-            birthDate: new Date().toISOString()
-          }
+          payload: makeValidUser()
         });
 
         expect(response.statusCode).toBe(409);
@@ -64,9 +58,8 @@ describe('UsersController', () => {
           method: 'POST',
           url: '/users',
           payload: {
-            username: 'foo',
-            email: 'not-an-email',
-            birthDate: new Date().toISOString()
+            ...makeValidUser(),
+            email: 'invalid-email'
           }
         });
 
@@ -86,8 +79,7 @@ describe('UsersController', () => {
           method: 'POST',
           url: '/users',
           payload: {
-            username: 'foo',
-            email: 'foo@provider.com',
+            ...makeValidUser(),
             birthDate: new Date().toISOString()
           }
         });
@@ -109,9 +101,8 @@ describe('UsersController', () => {
             method: 'POST',
             url: '/users',
             payload: {
-              username: 'ba',
-              email: 'foo@provider.com',
-              birthDate: new Date('1990-01-01').toISOString()
+              ...makeValidUser(),
+              username: 'ba'
             }
           });
 
