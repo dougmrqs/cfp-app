@@ -1,23 +1,32 @@
 import Fastify from 'fastify'
 import { helloWorld } from './routes/hello-world'
-import * as UserRoutes from '../http/routes/users'
-import * as ProposalRoutes from '../http/routes/proposals'
 import * as Serializers from '../http/serializers'
+import { ApplicationError } from '../../errors/application-error'
+import { routesPlugin } from './routes/routes-plugin'
 
 export const fastify = Fastify({
-  logger: true
+  logger: true,
 })
 
 fastify.register(helloWorld)
-fastify.register(UserRoutes.create)
-fastify.register(ProposalRoutes.create)
+fastify.register(routesPlugin)
 
 fastify.setErrorHandler((error, _, reply) => {
-  if (error.code === 'CONFLICT') {
-    reply.status(409).send(Serializers.serializeError(error))
-  } else {
-    throw error
+  if (error instanceof ApplicationError) {
+    if (error.code === 'BAD_REQUEST') {
+      reply.code(400).send(Serializers.serializeError(error))
+    }
+
+    if (error.code === 'CONFLICT') {
+      reply.code(409).send(Serializers.serializeError(error))
+    }
+
+    if (error.code === 'UNKNOWN') {
+      reply.code(500).send(Serializers.serializeError(error))
+    }
   }
+
+  reply.code(500).send('Internal server error')
 })
 
 export const start = async () => {

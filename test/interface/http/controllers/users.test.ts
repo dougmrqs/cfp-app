@@ -52,7 +52,7 @@ describe('UsersController', () => {
         expect(response.json()).toMatchObject({
           error: {
             code: 'CONFLICT',
-            message: 'Email already taken'
+            message: 'email already taken'
           }
         });
       });
@@ -65,7 +65,7 @@ describe('UsersController', () => {
           url: '/users',
           payload: {
             username: 'foo',
-            email: 'foo',
+            email: 'not-an-email',
             birthDate: new Date().toISOString()
           }
         });
@@ -73,8 +73,8 @@ describe('UsersController', () => {
         expect(response.statusCode).toBe(400);
         expect(response.json()).toMatchObject({
           error: {
-            code: 'BadRequest',
-            message: 'email must be valid'
+            code: 'BAD_REQUEST',
+            message: 'email must match format "email"'
           }
         });
       });
@@ -95,7 +95,7 @@ describe('UsersController', () => {
         expect(response.statusCode).toBe(400);
         expect(response.json()).toMatchObject({
           error: {
-            code: 'BadRequest',
+            code: 'BAD_REQUEST',
             message: 'User must be at least 18 years old'
           }
         });
@@ -118,7 +118,7 @@ describe('UsersController', () => {
           expect(response.statusCode).toBe(400);
           expect(response.json()).toMatchObject({
             error: {
-              code: 'BadRequest',
+              code: 'BAD_REQUEST',
               message: 'username must NOT have fewer than 3 characters'
             }
           });
@@ -141,7 +141,7 @@ describe('UsersController', () => {
           expect(response.statusCode).toBe(400);
           expect(response.json()).toMatchObject({
             error: {
-              code: 'BadRequest',
+              code: 'BAD_REQUEST',
               message: "body must have required property 'username'"
             }
           });
@@ -162,7 +162,7 @@ describe('UsersController', () => {
           expect(response.statusCode).toBe(400);
           expect(response.json()).toMatchObject({
             error: {
-              code: 'BadRequest',
+              code: 'BAD_REQUEST',
               message: "body must have required property 'email'"
             }
           });
@@ -183,7 +183,7 @@ describe('UsersController', () => {
           expect(response.statusCode).toBe(400);
           expect(response.json()).toMatchObject({
             error: {
-              code: 'BadRequest',
+              code: 'BAD_REQUEST',
               message: "body must have required property 'birthDate'"
             }
           });

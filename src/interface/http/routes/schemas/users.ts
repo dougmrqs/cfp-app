@@ -5,7 +5,7 @@ export const create = {
     properties: {
       email: {
         type: 'string',
-        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        format: 'email'
       },
       username: {
         type: 'string',
@@ -32,7 +32,7 @@ export const createResponse = {
       error: {
         type: 'object',
         properties: {
-          code: { value: 'BadRequest' },
+          code: { value: 'BAD_REQUEST' },
           message: { type: 'string' }
         }
       }

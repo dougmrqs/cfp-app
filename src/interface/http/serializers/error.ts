@@ -1,12 +1,10 @@
-export function serializeError(error: Error & {code: string}) {
+import { ApplicationError } from '../../../errors/application-error'
+
+export function serializeError(error: ApplicationError) {
   return {
     error: {
-      code: error.code ?? 'BadRequest',
-      message: serializeMessage(error.message)
+      code: error.code,
+      message: error.message
     }
   }
-}
-
-function serializeMessage(message: string) {
-  return message.replace('body/', '').replace(/must match pattern.*$/, 'must be valid')
 }
