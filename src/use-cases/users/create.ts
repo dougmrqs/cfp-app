@@ -20,7 +20,7 @@ export async function createUser(user: Omit<User, 'id'>) {
 function validateUser(user: Omit<User, 'id'>) {
   const EIGHTEEN_YEARS_AGO = new Date(Date.now() - 18 * 365 * 24 * 60 * 60 * 1000)  
 
-  if (new Date(user.birthDate) > EIGHTEEN_YEARS_AGO) {
+  if (user.birthDate > EIGHTEEN_YEARS_AGO) {
     throw new ApplicationError(ErrorCodes.BAD_REQUEST, 'User must be at least 18 years old')
   }
 }
