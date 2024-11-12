@@ -1,4 +1,6 @@
 import Fastify from 'fastify'
+import fastifyJwt from '@fastify/jwt';
+import fastifyCookie from '@fastify/cookie';
 import { helloWorld } from './routes/hello-world'
 import * as Serializers from '../http/serializers'
 import { ApplicationError } from '../../errors/application-error'
@@ -9,6 +11,8 @@ export const fastify = Fastify({
 })
 
 fastify.register(helloWorld)
+fastify.register(fastifyCookie)
+fastify.register(fastifyJwt, { secret: 'uorqueshope' })
 fastify.register(routesPlugin)
 
 fastify.setErrorHandler((error, _, reply) => {
