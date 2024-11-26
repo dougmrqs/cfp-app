@@ -5,6 +5,13 @@ import { helloWorld } from './routes/hello-world'
 import * as Serializers from '../http/serializers'
 import { ApplicationError } from '../../errors/application-error'
 import { routesPlugin } from './routes/routes-plugin'
+import { authenticate } from './decorators';
+
+declare module "fastify" {
+  interface FastifyInstance {
+    authenticate(request: FastifyRequest, reply: FastifyReply): void
+  }
+}
 
 export const fastify = Fastify({
   logger: true,
@@ -13,6 +20,7 @@ export const fastify = Fastify({
 fastify.register(helloWorld)
 fastify.register(fastifyCookie)
 fastify.register(fastifyJwt, { secret: 'uorqueshope' })
+fastify.decorate('authenticate', authenticate)
 fastify.register(routesPlugin)
 
 fastify.setErrorHandler((error, _, reply) => {

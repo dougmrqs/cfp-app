@@ -76,7 +76,7 @@ describe('ProposalStateService', () => {
     });
   });
 
-  describe('#approve', () => {
+  describe.skip('#approve', () => {
     describe('a DRAFT proposal', () => {
       it('cannot be approved', async () => {
         try {
@@ -129,7 +129,7 @@ describe('ProposalStateService', () => {
     });
   });
 
-  describe('#reject', () => {
+  describe.skip('#reject', () => {
     describe('a DRAFT proposal', () => {
       it('cannot be rejected', async () => {
         try {

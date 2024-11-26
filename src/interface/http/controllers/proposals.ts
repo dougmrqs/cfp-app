@@ -1,18 +1,22 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { createProposal } from '../../../use-cases/proposals/create'
+import { prisma } from '../../../connection'
+import { UserRepository } from '../../../repositories/users-repository'
 
 export async function create(request: FastifyRequest, res: FastifyReply) {
-  const { body, headers } = request
+  const { body } = request
 
-  if (!headers['user-id']) {
-    res.status(401).send({ message: 'Unauthorized' })
-    return
-  }
+  const author = await UserRepository.findById(Number(request.user.sub))
+
+  // if (!author) {
+  //   res.status(401).send()
+  //   return
+  // }
 
   const proposal = await createProposal({
     title: body.proposal.title,
     body: body.proposal.body,
-    authorId: Number(headers['user-id'])
+    authorId: author!.id // remove this ! crime
   })
 
   res.status(201).send(proposal)

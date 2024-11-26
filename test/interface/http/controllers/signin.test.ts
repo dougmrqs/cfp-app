@@ -42,10 +42,10 @@ describe('SignIn Controller', () => {
         });
   
         expect(response.statusCode).toBe(201)
-        expect(response.body).toMatchObject({
+        expect(response.json()).toMatchObject({
           token: expect.any(String)
         })
       })
-    })
+    });
   });
 });
