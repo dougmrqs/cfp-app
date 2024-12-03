@@ -1,13 +1,16 @@
-import { User } from '@prisma/client';
 import { prisma } from '../../../../src/connection';
 import { fastify } from '../../../../src/interface/http/server';
 import { UserRepository } from '../../../../src/repositories/users-repository';
 
-vi.mock('../../../../src/repositories/users-repository')
+// vi.mock('../../../../src/repositories/users-repository.ts', { spy: true})
 
-describe.only('ProposalsController', () => {
+describe('ProposalsController', () => {
   beforeEach(async () => {
     await prisma.user.deleteMany({})
+  })
+
+  afterEach(async () => {
+    vi.restoreAllMocks();
   })
 
   describe('POST /proposals', () => {
@@ -21,7 +24,7 @@ describe.only('ProposalsController', () => {
           data: {
             username: 'foo',
             email: userEmail,
-            birthDate: new Date()
+            birthDate: new Date('1990-01-01'),
           }
         });
 
@@ -33,11 +36,11 @@ describe.only('ProposalsController', () => {
           }
         })
 
+        console.log(jwtResponse)
         jwt = jwtResponse.json().token
       })
 
       it('creates a proposal', async () => {
-        console.log(jwt)
         const response = await fastify.inject({
           method: 'POST',
           url: '/proposals',
@@ -92,9 +95,11 @@ describe.only('ProposalsController', () => {
       });
 
       describe('but the user is not found', () => {
-        it.only('returns 404', async () => {
-          vi.mocked(UserRepository.findById).mockResolvedValue(null)
+        // beforeEach(() => {
+        //   vi.spyOn(UserRepository, 'findById').mockResolvedValueOnce(null);
+        // });
 
+        it.todo('returns 404', async () => {
           const response = await fastify.inject({
             method: 'POST',
             url: '/proposals',

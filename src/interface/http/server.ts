@@ -25,6 +25,10 @@ fastify.register(routesPlugin)
 
 fastify.setErrorHandler((error, _, reply) => {
   if (error instanceof ApplicationError) {
+    if(error.code === 'NOT_FOUND') {
+      reply.code(404).send(Serializers.serializeError(error))
+    }
+
     if (error.code === 'BAD_REQUEST') {
       reply.code(400).send(Serializers.serializeError(error))
     }

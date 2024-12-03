@@ -1,7 +1,8 @@
 export enum ErrorCodes {
   CONFLICT = 'CONFLICT',
   BAD_REQUEST = 'BAD_REQUEST',
-  UNKNOWN = 'UNKNOWN'
+  UNKNOWN = 'UNKNOWN',
+  NOT_FOUND = 'NOT_FOUND',
 }
 
 export class ApplicationError extends Error {
