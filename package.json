@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx src/index.ts",
+    "workers": "tsx src/workers/mailer.ts",
     "pretest": "dotenv -e .env.test -- npx prisma migrate dev && npx prisma db seed",
     "test": "npm run run-tests",
     "run-tests": "dotenv -e .env.test -- vitest"
@@ -19,6 +20,7 @@
     "@fastify/cookie": "^11.0.1",
     "@fastify/jwt": "^9.0.1",
     "@prisma/client": "^5.19.1",
+    "bullmq": "^5.31.0",
     "fastify": "^5.0.0"
   },
   "devDependencies": {
