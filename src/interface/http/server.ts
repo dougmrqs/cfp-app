@@ -6,6 +6,7 @@ import * as Serializers from '../http/serializers'
 import { ApplicationError } from '../../errors/application-error'
 import { routesPlugin } from './routes/routes-plugin'
 import { authenticate } from './decorators';
+import { createBullBoardPlugin } from './bullmq-ui';
 
 declare module "fastify" {
   interface FastifyInstance {
@@ -22,6 +23,9 @@ fastify.register(fastifyCookie)
 fastify.register(fastifyJwt, { secret: 'uorqueshope' })
 fastify.decorate('authenticate', authenticate)
 fastify.register(routesPlugin)
+// TODO: what's prefix and basePath
+// TODO: add auth to this route
+fastify.register(createBullBoardPlugin(), { prefix: '/ui', basePath: '/ui' }) 
 
 fastify.setErrorHandler((error, _, reply) => {
   if (error instanceof ApplicationError) {
@@ -42,6 +46,7 @@ fastify.setErrorHandler((error, _, reply) => {
     }
   }
 
+  console.error(error)
   reply.code(500).send('Internal server error')
 })
 
