@@ -19,6 +19,21 @@ model User {
   username  String
   birthDate DateTime
   proposals Proposal[]
+  roles     UserOnRoles[]
+}
+
+model Role {
+  id       Int     @id @default(autoincrement())
+  name      String  @unique
+  users     UserOnRoles[]
+}
+
+model UserOnRoles {
+  id       Int     @id @default(autoincrement())
+  userId   Int
+  roleId   Int
+  user     User    @relation(fields: [userId], references: [id])
+  role     Role    @relation(fields: [roleId], references: [id])
 }
 
 model Event {
