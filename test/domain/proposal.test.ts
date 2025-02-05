@@ -1,5 +1,5 @@
 import { Proposal } from '../../src/domain/proposal';
-import { ProposalState } from '../../src/services/proposal-state-service';
+import { ProposalState } from '../../src/domain/proposal';
 
 describe('Proposal', () => {
   const mockData = {

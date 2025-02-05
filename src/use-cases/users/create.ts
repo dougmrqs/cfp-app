@@ -23,6 +23,7 @@ export async function createUser(user: Omit<User, 'id'>) {
 }
 
 function validateUser(user: Omit<User, 'id'>) {
+  // TODO: use a date library to handle dates. i.e. date-fns or luxon
   const EIGHTEEN_YEARS_AGO = new Date(Date.now() - 18 * 365 * 24 * 60 * 60 * 1000)
 
   if (user.birthDate > EIGHTEEN_YEARS_AGO) {

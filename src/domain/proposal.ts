@@ -1,6 +1,12 @@
-import { User, Proposal as PrismaProposal } from '@prisma/client';
-import { ProposalState } from '../services/proposal-state-service';
+import { Proposal as PrismaProposal } from '@prisma/client';
 import { ApplicationError, ErrorCodes } from '../errors/application-error';
+
+export enum ProposalState {
+  DRAFT = 'DRAFT',
+  SUBMITTED = 'SUBMITTED',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED'
+}
 
 type Metadata = {
   // adminId: User['id'];

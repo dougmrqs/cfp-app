@@ -35,7 +35,6 @@ describe("ProposalsController", () => {
           },
         });
 
-        console.log(jwtResponse);
         jwt = jwtResponse.json().token;
       });
 
