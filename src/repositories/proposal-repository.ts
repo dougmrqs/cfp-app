@@ -16,7 +16,7 @@ export const ProposalRepository = () => {
   }
 
   async function update(proposal: Proposal) {
-    prisma.proposal.update({
+    const updatedProposal = await prisma.proposal.update({
       where: { id: proposal.id },
       data: {
         title: proposal.title,
@@ -25,6 +25,8 @@ export const ProposalRepository = () => {
         authorId: proposal.authorId
       }
     });
+
+    return new Proposal(updatedProposal);
   }
 
   async function findById(id: number): Promise<Proposal> {

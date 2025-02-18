@@ -1,4 +1,4 @@
-import { Proposal, User } from '@prisma/client';
+import { Proposal } from '@prisma/client';
 import { prisma } from '../../connection';
 
 import { ProposalState } from '../../domain/proposal';

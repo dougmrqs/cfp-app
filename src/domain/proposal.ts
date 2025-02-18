@@ -45,18 +45,22 @@ export class Proposal implements PrismaProposal {
 
   submit() {
     this.transition(ProposalState.SUBMITTED, {});
+    return this;
   }
 
   approve() {
     this.transition(ProposalState.APPROVED, {});
+    return this;
   }
 
   reject() {
     this.transition(ProposalState.REJECTED, {});
+    return this;
   }
 
   draft() {
-    this.transition(ProposalState.DRAFT, {})
+    this.transition(ProposalState.DRAFT, {});
+    return this;
   }
 
   private transition(newState: ProposalState, metadata: Metadata) {
