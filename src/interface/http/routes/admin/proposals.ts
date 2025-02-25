@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import * as ProposalsController from '../controllers/proposals'
+import * as ProposalsController from '@controllers/admin/proposals'
 
 const transitionSchema = {
   type: 'object',
@@ -13,9 +13,9 @@ const transitionSchema = {
 }
 
 export function proposalRoutes(fastify: FastifyInstance, _: FastifyPluginOptions, done: () => void) {
-  fastify.post('/proposals', { onRequest: [fastify.authenticate] }, ProposalsController.create);
+  fastify.post('/proposals/:proposalId/approve', { schema: transitionSchema, onRequest: [fastify.authenticate] }, ProposalsController.approve);
 
-  fastify.post('/proposals/:proposalId/submit', { schema: transitionSchema, onRequest: [fastify.authenticate] }, ProposalsController.submit);
+  fastify.post('/proposals/:proposalId/reject', { schema: transitionSchema, onRequest: [fastify.authenticate] }, ProposalsController.reject);
 
   done();
 }

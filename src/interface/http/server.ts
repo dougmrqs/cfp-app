@@ -44,6 +44,10 @@ fastify.setErrorHandler((error, _, reply) => {
     if (error.code === 'UNKNOWN') {
       reply.code(500).send(Serializers.serializeError(error))
     }
+
+    if (error.code === 'FORBIDDEN_ACTION') {
+      reply.code(403).send(Serializers.serializeError(error))
+    }
   }
 
   console.error(error)
