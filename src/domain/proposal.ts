@@ -25,8 +25,7 @@ const ProposalStateTransitions = [{
 {
   from: ProposalState.REJECTED,
   to: ProposalState.DRAFT
-}
-]
+}]
 
 export class Proposal implements PrismaProposal {
   id: number;

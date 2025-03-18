@@ -2,15 +2,16 @@
   "name": "grupo-node",
   "version": "0.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "tsx src/index.ts",
     "workers": "tsx src/workers/mailer.ts",
     "pretest": "dotenv -e .env.test -- npx prisma migrate dev && npx prisma db seed",
     "test": "npm run run-tests",
-    "run-tests": "dotenv -e .env.test -- vitest"
-  },
+    "run-tests": "dotenv -e .env.test -- vitest",
+    "test:node": "node --test 'node_test/**/*.test.ts'",
+    "test:node:watch": "node --test --watch --experimental-transform-types 'node_test/**/*.test.ts'"
+    },
   "prisma": {
     "seed": "tsx prisma/seeds/events.ts"
   },
