@@ -1,6 +1,6 @@
-const { describe, it } = require('node:test');
-const assert = require('node:assert');
-const { Proposal, ProposalState } = require('../../src/domain/proposal');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Proposal, ProposalState } from '../../src/domain/proposal.js';
 
 describe('Proposal', () => {
   const mockData = {
