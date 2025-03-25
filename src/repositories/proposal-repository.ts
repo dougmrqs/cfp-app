@@ -1,7 +1,7 @@
-import { User } from '@prisma/client';
-import { Proposal } from '../domain/proposal';
-import { prisma } from '../connection';
-import { ApplicationError, ErrorCodes } from '../errors/application-error';
+import type { User } from '@prisma/client';
+import { Proposal } from '../domain/proposal.ts';
+import { prisma } from '../connection.ts';
+import { ApplicationError, ErrorCodes } from '../errors/application-error.ts';
 
 export const ProposalRepository = () => {
   async function create({ title, body, author }: { title: string; body: string; author: User }) {

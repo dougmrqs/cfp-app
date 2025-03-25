@@ -1,5 +1,5 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { prisma } from '../../../connection'
+import type { FastifyReply, FastifyRequest } from 'fastify'
+import { prisma } from '../../../connection.ts'
 
 type CreateBody = {
   email: string

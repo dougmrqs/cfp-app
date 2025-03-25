@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 import { Queue } from 'bullmq';
 
 export const emailQueue = new Queue('email');

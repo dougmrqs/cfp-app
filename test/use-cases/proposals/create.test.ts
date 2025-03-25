@@ -1,5 +1,5 @@
-import { prisma } from '../../../src/connection';
-import { createProposal } from '../../../src/use-cases/proposals/create';
+import { prisma } from '../../../src/connection.ts';
+import { createProposal } from '../../../src/use-cases/proposals/create.ts';
 
 describe('#createProposal', () => {
   beforeEach(async () => {

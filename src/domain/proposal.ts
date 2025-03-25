@@ -1,5 +1,5 @@
-import { Proposal as PrismaProposal } from '@prisma/client';
-import { ApplicationError, ErrorCodes } from '../errors/application-error.js';
+import type { Proposal as PrismaProposal } from '@prisma/client';
+import { ApplicationError, ErrorCodes } from '../errors/application-error.ts';
 
 export enum ProposalState {
   DRAFT = 'DRAFT',

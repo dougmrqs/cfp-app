@@ -1,4 +1,4 @@
-import { Proposal, ProposalState } from '../../src/domain/proposal';
+import { Proposal, ProposalState } from '../../src/domain/proposal.ts';
 
 describe('Proposal', () => {
   const mockData = {

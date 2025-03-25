@@ -1,5 +1,5 @@
-import { User } from "@prisma/client";
-import { prisma } from "../connection";
+import type { User } from "@prisma/client";
+import { prisma } from "../connection.ts";
 
 export const UserRepository = () => {
   const create = () => {

@@ -1,12 +1,12 @@
-import { FastifyRequest, FastifyReply } from "fastify";
-import { createProposal } from "@use-cases/proposals/create";
-import { UserRepository } from "@repositories/users-repository";
+import type { FastifyRequest, FastifyReply } from "fastify";
+import { createProposal } from "../../../use-cases/proposals/create.ts";
+import { UserRepository } from "../../../repositories/users-repository.ts";
 import {
   ApplicationError,
   ErrorCodes,
-} from "@errors/application-error";
-import { ProposalRepository } from '@repositories/proposal-repository';
-import { submitProposal } from '@use-cases/proposals/submit';
+} from "../../../errors/application-error.ts";
+import { ProposalRepository } from '../../../repositories/proposal-repository.ts';
+import { submitProposal } from '../../../use-cases/proposals/submit.ts';
 
 type CreateRequestType = {
   Body: {

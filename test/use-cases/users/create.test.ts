@@ -1,5 +1,5 @@
-import { prisma } from '../../../src/connection';
-import { createUser } from '../../../src/use-cases/users/create';
+import { prisma } from '../../../src/connection.ts';
+import { createUser } from '../../../src/use-cases/users/create.ts';
 
 describe('#createUser', () => {
   beforeEach(async () => {

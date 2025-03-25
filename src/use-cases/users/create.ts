@@ -1,8 +1,8 @@
-import { User } from '@prisma/client';
-import { prisma } from '../../connection';
-import { handlePrismaError } from '../../errors/prisma-error-handler';
-import { ApplicationError, ErrorCodes } from '../../errors/application-error';
-import { scheduleWelcomeEmail } from '../../services/schedule-welcome-mail';
+import type { User } from '@prisma/client';
+import { prisma } from '../../connection.ts';
+import { handlePrismaError } from '../../errors/prisma-error-handler.ts';
+import { ApplicationError, ErrorCodes } from '../../errors/application-error.ts';
+import { scheduleWelcomeEmail } from '../../services/schedule-welcome-mail.ts';
 
 export async function createUser(user: Omit<User, 'id'>) {
   try {
