@@ -2,6 +2,7 @@
   "name": "grupo-node",
   "version": "0.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "tsx src/index.ts",

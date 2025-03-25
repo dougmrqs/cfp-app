@@ -1,7 +1,7 @@
-import { bar } from './bar';
+import { bar } from './bar.ts';
 
-function foo(bar: string) {
-  console.log(bar);
+function foo(baz: string) {
+  console.log(baz);
 }
 
 bar(5, () => foo('hello'));
