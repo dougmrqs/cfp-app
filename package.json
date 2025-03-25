@@ -10,9 +10,9 @@
     "pretest": "dotenv -e .env.test -- npx prisma migrate dev && npx prisma db seed",
     "test": "npm run run-tests",
     "run-tests": "dotenv -e .env.test -- vitest",
-    "test:node": "node --test --experimental-transform-types 'node_test/**/*.test.ts'",
-    "test:node:watch": "node --test --watch --experimental-transform-types 'node_test/**/*.test.ts'"
-    },
+    "test:node": "tsx --test 'node_test/**/*.test.ts'",
+    "test:node:watch": "tsx --test --watch 'node_test/**/*.test.ts'"
+  },
   "prisma": {
     "seed": "tsx prisma/seeds/events.ts"
   },

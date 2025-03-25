@@ -1,5 +1,5 @@
-import { fastify } from '../../../../src/interface/http/server';
-import { prisma } from '../../../../src/connection';
+import { fastify } from '../../../../src/interface/http/server.ts';
+import { prisma } from '../../../../src/connection.ts';
 
 describe('SignIn Controller', () => {
   beforeEach(async () => {

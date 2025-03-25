@@ -1,5 +1,5 @@
-import { FastifyError } from 'fastify';
-import { ApplicationError, ErrorCodes } from './application-error';
+import type { FastifyError } from 'fastify';
+import { ApplicationError, ErrorCodes } from './application-error.ts';
 
 export function fastifyErrorHandler(error: FastifyError) {
   if (error.code === 'FST_ERR_VALIDATION') {

@@ -1,6 +1,6 @@
-import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import * as UsersController from '../controllers/users'
-import * as UserSchemas from './schemas/users'
+import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
+import * as UsersController from '../controllers/users.ts'
+import * as UserSchemas from './schemas/users.ts'
 
 const createSchema = {
   body: UserSchemas.create.body,

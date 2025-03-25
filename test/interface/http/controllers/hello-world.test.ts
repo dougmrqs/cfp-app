@@ -1,4 +1,4 @@
-import { fastify } from '../../../../src/interface/http/server';
+import { fastify } from '../../../../src/interface/http/server.ts';
 
 describe('Hello World Controller', () => {
   describe('GET /', () => {

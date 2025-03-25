@@ -1,5 +1,5 @@
-import { FastifyRequest, FastifyReply } from 'fastify'
-import { createUser } from '../../../use-cases/users/create'
+import type { FastifyRequest, FastifyReply } from 'fastify'
+import { createUser } from '../../../use-cases/users/create.ts'
 
 type CreateBody = {
   email: string,

@@ -1,5 +1,5 @@
-import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import * as ProposalsController from '../controllers/proposals'
+import type { FastifyInstance, FastifyPluginOptions } from 'fastify'
+import * as ProposalsController from '../controllers/proposals.ts'
 
 const transitionSchema = {
   type: 'object',
