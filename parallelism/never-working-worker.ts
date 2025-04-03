@@ -11,8 +11,9 @@ worker.on('completed', (job) => {
 });
 
 // never processes jobs
-while(true) {
+// while(true) {
+while(performance.now() < 10_000) {
   logger.logQueue('Adding job to queue');
-  await q1.add('myJob', {}).then((job) => logger.logQueue(`Job ${job.id} added`)).then(() => sleep(500));
-  sleep(5_000);
+  q1.add('myJob', {}).then((job) => logger.logQueue(`Job ${job.id} added`)).then(() => sleep(500));
+  sleep(500);
 }
