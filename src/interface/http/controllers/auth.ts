@@ -1,15 +1,24 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { prisma } from '../../../connection.ts'
+import { PasswordEncrypter } from '../../../security/encrypt-password.ts'
 
 type CreateBody = {
   email: string
+  password: string
 }
 
 export async function create(request: FastifyRequest<{ Body: CreateBody }>, reply: FastifyReply) {
-  const user = await prisma.user.findFirst({ where: { email: request.body.email } })
+  const { body } = request
+
+  const user = await prisma.user.findFirst({ where: { email: body.email } })
 
   if (!user) {
     return reply.status(422).send('Unprocessable content')
+  }
+
+  if (!PasswordEncrypter.compare(body.password, user.passwordHash)) {
+    // return reply.status(422).send('Unprocessable content')
+    return reply.status(401).send('Password errado')
   }
 
   const payload = {

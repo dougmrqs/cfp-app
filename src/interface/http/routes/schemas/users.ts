@@ -23,7 +23,8 @@ export const createResponse = {
       id: { type: 'string' },
       email: { type: 'string' },
       username: { type: 'string' },
-      birthDate: { type: 'string' }
+      birthDate: { type: 'string' },
+      passwordHash: { type: 'string' }
     }
   },
   400: {
