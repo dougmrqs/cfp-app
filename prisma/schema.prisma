@@ -17,6 +17,7 @@ model User {
   id        Int     @id @default(autoincrement())
   email     String  @unique
   username  String
+  passwordHash String @default("banido")
   birthDate DateTime
   proposals Proposal[]
   roles     UserOnRoles[]

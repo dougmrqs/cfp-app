@@ -1,0 +1,17 @@
+meta {
+  name: Sign In
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "pedro.henrique@codeminer42.com"
+  }
+}
